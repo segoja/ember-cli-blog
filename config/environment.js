@@ -2,11 +2,6 @@
 
 module.exports = function(environment) {
   var ENV = {
-    'ember-resolver': {
-      features: {
-        EMBER_RESOLVER_MODULE_UNIFICATION: true
-      }
-    },
     modulePrefix: 'myapp',
     environment,
     rootURL: '/',
