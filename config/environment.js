@@ -39,8 +39,12 @@ module.exports = function(environment) {
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = true;
     ENV.APP.LOG_VIEW_LOOKUPS = true;
+    
+    ENV.RAISE_ON_DEPRECATION = true;
+    ENV.LOG_STACKTRACE_ON_DEPRECATION = true;
+    
     ENV.APP.rootElement = '#ember-testing';
-    ENV.APP.autoboot = false;
+    ENV.APP.autoboot = true;
   }
 
   ENV.remote_couch = 'https://my.couchcluster.com/bloggr';  // 'http://localhost:5984/bloggr';

@@ -2,7 +2,8 @@
   <div class="row">
     {{!-- blog post listing --}}
     <div class="col-xs-5">
-      <button {{action "createPost"}}>Create</button> <Input @type="text" @value={{query}} placeholder="Filter Posts" @autofocus="autofocus" @key-press={{action "resetPage"}} />
+      <button {{on "click" this.createPost}}>Create</button> 
+      <Input @type="text" @value={{query}} placeholder="Filter Posts" @autofocus="autofocus" @key-press={{action "resetPage"}} />
       <table class="table">
         <thead>
           <tr><th>Recent Posts</th></tr>
@@ -19,7 +20,8 @@
           {{/each}}
         </tbody>
       </table>
-      <PageNumbers @content={{pagedContent}} />
+      <PageNumbers @content={{pagedContent}}/>
+      
     </div>
 
     {{!-- blog post content --}}

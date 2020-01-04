@@ -1,7 +1,9 @@
+import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
 
-export default Route.extend({
-  model: function(params) {
+export default class AuthorRoute extends Route {
+  @service store;
+  model(params) {
     return this.store.findRecord('author', params.author_id);
-  }
-});
+  }  
+}

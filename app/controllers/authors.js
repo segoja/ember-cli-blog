@@ -1,21 +1,22 @@
 import Controller from '@ember/controller';
+import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { inject } from '@ember/controller';
+import { tracked } from '@glimmer/tracking';
 
-export default Controller.extend({
-  author: inject('authors.author'),
-  router: service(),
-
-  page: 1,
-  perPage: 5,
-
-  queryParams: ["page", "perPage"],
-
-  actions: {
-    createAuthor: function() {
-      this.author.set('globals.isEditing', true);
-      var newauthor = this.store.createRecord('author');
-      this.router.transitionTo('authors.author', newauthor.save());
-    }
+export default class AuthorsController extends Controller {
+  @service router;
+  @inject ('authors.author') author;
+  
+  page = 1;
+  perPage = 10;
+  
+  queryParams = ["page", "perPage"];
+  
+  @action
+  createAuthor() {
+    this.author.set('globals.isEditing', true);
+    var newauthor = this.store.createRecord('author');
+    this.router.transitionTo('authors.author', newauthor.save());
   }
-});
+}

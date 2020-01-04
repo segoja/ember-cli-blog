@@ -1,8 +1,12 @@
 import Route from '@ember/routing/route';
 
-export default Route.extend({
-  model: function() {
+export default class AuthorsRoute extends Route {
+  queryParams = {
+    page: {
+      refreshModel: true
+    }
+  }
+  model() {
     return this.store.findAll('author');
   }
-
-});
+}

@@ -1,5 +1,6 @@
-import Component from '@ember/component';
-import { set } from '@ember/object';
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 import { sort, alias } from '@ember/object/computed';
 import pagedArray from 'ember-cli-pagination/computed/paged-array';
 import computedFilterByQuery from 'ember-cli-filter-by-query';
@@ -9,38 +10,34 @@ import computedFilterByQuery from 'ember-cli-filter-by-query';
 // `posts.hbs` gets its params by defining
 // => queryParams: ["page", "perPage", "query"]
 // inside its controller located at `controllers/posts.js`
-export default Component.extend({
+export default class BlogPosts extends Component {
   // take in `posts` from our view
   // and sort it via `postsSorting`
   // into `arrangedContent`
-  postsSorting: Object.freeze(['date:desc']),
-  arrangedContent: sort('posts', 'postsSorting'),
+   
+  postsSorting = Object.freeze(['date:desc']);
+  @sort ('args.posts', 'postsSorting') arrangedContent;
 
+  @tracked page = this.args.page || 1;
+  @tracked perPage = this.args.perPage || 5;
+    
   // `arrangedContent` is then used by this filter to create `filteredContent`
-  filteredContent: computedFilterByQuery(
-    'arrangedContent',
-    ['title', 'body', 'authorName', 'excerpt'],
-    'query',
-    { conjunction: 'and', sort: false}
-  ),
+  @computedFilterByQuery('arrangedContent',['title', 'body', 'authorName', 'excerpt'],'query',{ conjunction: 'and', sort: false}) filteredContent;
 
   // `filteredContent` is then used by this to create the paged array
   // which is used by our view like so
   // => {{#each pagedContent as |post|}}
   // => {{page-numbers content=pagedContent}}
-  pagedContent: pagedArray('filteredContent', {
-    page: alias('parent.page'),
-    perPage: alias('parent.perPage')
-  }),
 
+  @pagedArray ('filteredContent', { page: alias('parent.page'), perPage: alias('parent.perPage')}) pagedContent;
+  
   // define the actions, used by our view like so:
   // => <button {{action 'createPost'}}>Create</button>
-  actions: {
-    resetPage: function() {
-      set(this, 'page', 1);
-    },
-    createPost: function() {
-      this.createAction();
-    }
+  @action resetPage () {
+    this.args.page = 1;
   }
-});
+  @action createPost () {
+    this.args.createAction();
+  }
+}
+

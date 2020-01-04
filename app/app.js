@@ -10,6 +10,10 @@ marked.setOptions({
 });
 
 const App = Application.extend({
+  modulePrefix: config.modulePrefix,
+  podModulePrefix: config.podModulePrefix,
+  Resolver,
+  
   // Basic logging, e.g. "Transitioned into 'post'"
   LOG_TRANSITIONS: true,
 
@@ -18,10 +22,7 @@ const App = Application.extend({
   // `beforeModel`, `model`, and `afterModel` hooks, and
   // information about redirects and aborted transitions
   LOG_TRANSITIONS_INTERNAL: true,
-  
-  modulePrefix: config.modulePrefix,
-  podModulePrefix: config.podModulePrefix,
-  Resolver
+  LOG_RESOLVER: true,
 });
 
 loadInitializers(App, config.modulePrefix);
