@@ -2,7 +2,6 @@ import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { inject } from '@ember/controller';
-import { tracked } from '@glimmer/tracking';
 
 export default class PostsController extends Controller {
   @service router;
