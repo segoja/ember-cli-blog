@@ -68,7 +68,7 @@
     "eslint-plugin-node": "^11.0.0",
     "license-checker": "^25.0.1",
     "loader.js": "^4.7.0",
-    "marked": "^0.8.0",
+    "marked": "^0.8.1",
     "moment": "^2.24.0",
     "qunit-dom": "^1.0.0"
   },
