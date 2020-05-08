@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <h1 id="title">Welcome to Ember.js <a href="https://github.com/broerse/ember-cli-blog" title="GitHub Source"><div class="fa fa-github"></div></a></h1>
+  <h1 id="title">Welcome to Ember.js <a href="https://github.com/broerse/ember-cli-blog" title="GitHub Source">{{svg-jar "github" class="title"}}</a></h1>
   <div class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -33,7 +33,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="push {{if this.cloudState.cloudPull "push-enabled"}}" title="Pull data">
             <p class="navbar-btn">
-              <i aria-hidden class="fa fa-2x fa-cloud-download"></i>
+              {{svg-jar "cloud-download" size=2}}
             </p>
             <p class="navbar-text">
               Pull {{if this.cloudState.cloudPull "synced" "not synced"}}
@@ -41,7 +41,7 @@
           </li>
           <li class="push {{if this.cloudState.cloudPush "push-enabled"}}" title="Push data">
             <p class="navbar-btn">
-              <i aria-hidden class="fa fa-2x fa-cloud-upload"></i>
+              {{svg-jar "cloud-upload" size=2}}
             </p>
             <p class="navbar-text">
               Push {{if this.cloudState.cloudPush "synced" "not synced"}}
