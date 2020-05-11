@@ -33,7 +33,17 @@ module.exports = function(defaults) {
     },
     'ember-power-select': {
        theme: 'bootstrap'
-    }
+    },
+    'svgJar': {
+      strategy: 'inline',
+      optimizer: {
+        plugins: [
+          { removeTitle: false },
+          { removeDesc: { removeAny: false } },
+          { removeViewBox: false }
+        ]
+      },
+    }    
   });
 
   // Use `app.import` to add additional libraries to the generated
