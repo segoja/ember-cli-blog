@@ -1,6 +1,6 @@
 import MarkdownEditor from 'ember-cli-markdown-editor/components/markdown-editor';
-import Component from '@glimmer/component';
 import { action } from '@ember/object';
+import { A } from '@ember/array';
 
 export default class MarkdownEditorComponent extends MarkdownEditor  {
  
@@ -32,7 +32,7 @@ export default class MarkdownEditorComponent extends MarkdownEditor  {
     this.set('promptText', promptText);
     this.set('tooltip', tooltip);
 
-    if(!this.get('selection') && requireSelection){
+    if(!this.selection && requireSelection){
       this.set('modal', true);
       this.set('dialog', true);
     } else if (promptText){
@@ -69,7 +69,7 @@ export default class MarkdownEditorComponent extends MarkdownEditor  {
     var restoreValue = undoHistory.pop();
 
     that.setProperties({
-      undoHistory: Ember.A(undoHistory),
+      undoHistory: A(undoHistory),
       value: restoreValue
     });
   }

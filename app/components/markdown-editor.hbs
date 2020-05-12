@@ -13,7 +13,7 @@
           </button>
         {{/if}}
         {{#if btn.helpType}}
-          <a class="btn btn-light" title={{t btn.tooltip}} href="{{t btn.href}}" target="_blank" tabindex="-1">
+          <a class="btn btn-light" title={{t btn.tooltip}} href="{{t btn.href}}" target="_blank" rel="noopener noreferrer" tabindex="-1">
             {{svg-jar btn.iconSvg size="1" class="markdown-button" fill="#337ab7"}}
           </a>
         {{/if}}
@@ -39,7 +39,7 @@
     readonly={{this.readonly}}
     required={{this.required}}
     rows={{this.rows}}
-    tabindex={{this.modalTabindex}}
+    tabindex={{if this.modal -1 this.modalTabindex}}
     wrap={{this.wrap}} />
 </div>
 
@@ -47,36 +47,36 @@
   <div class="modal d-block" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        {{#if dialog}}
+        {{#if this.dialog}}
           <div class="modal-header">
-            <h5 class="modal-title" id="gridSystemModalLabel">{{t tooltip}}</h5>
+            <h5 class="modal-title" id="gridSystemModalLabel">{{t this.tooltip}}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" {{on "click" this.cancel}}>
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <p>{{t 'markdown-editor.modal.selectionText'}}</p>
+            <p>{{t "markdown-editor.modal.selectionText"}}</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-dismiss="modal" {{on "click" this.cancel}}>
-              <span>{{svg-jar "check" size="1" fill="white" class="markdown-button"}}</span> &nbsp;{{t 'markdown-editor.modal.confirm'}}</button>
+              <span>{{svg-jar "check" size="1" fill="white" class="markdown-button"}}</span> &nbsp;{{t "markdown-editor.modal.confirm"}}</button>
           </div>
         {{else}}
           <div class="modal-header">         
-            <h5 class="modal-title" id="gridSystemModalLabel">{{t tooltip}}</h5>
+            <h5 class="modal-title" id="gridSystemModalLabel">{{t this.tooltip}}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" {{on "click" this.cancel}}>
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <p>{{input type="text" value=this.result class="form-control" placeholder=(t promptText)}}</p>
+            <p><Input type="text" @value={{this.result}} class="form-control" placeholder={{t this.promptText}} /></p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" {{on "click" (fn this.confirm this.result)}}>
-              <span>{{svg-jar "check" size="1" fill="white" class="markdown-button"}}</span> &nbsp;{{t 'markdown-editor.modal.confirm'}}
+              <span>{{svg-jar "check" size="1" fill="white" class="markdown-button"}}</span> &nbsp;{{t "markdown-editor.modal.confirm"}}
             </button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal" {{on "click" this.cancel}}>
-              <span>{{svg-jar "close" size="1" class="markdown-button" fill="#ffffff"}}</span> &nbsp;{{t 'markdown-editor.modal.cancel'}}
+              <span>{{svg-jar "close" size="1" class="markdown-button" fill="#ffffff"}}</span> &nbsp;{{t "markdown-editor.modal.cancel"}}
             </button>
           </div>
         {{/if}}
