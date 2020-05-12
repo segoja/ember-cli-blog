@@ -1,6 +1,6 @@
 <header>
-  <h1 id="title">Welcome to Ember.js <a href="https://github.com/broerse/ember-cli-blog" title="GitHub Source"><div class="fa fa-github"></div></a></h1>
-  <nav class="navbar navbar-light bg-light navbar-expand">
+  <h1 id="title" class="mx-3">Welcome to Ember.js <a href="https://github.com/broerse/ember-cli-blog" title="GitHub Source">{{svg-jar "github" class="title"}}</a></h1>
+  <nav class="navbar navbar-light bg-light navbar-expand mx-3 border">
     <LinkTo @route="application" class="navbar-brand">
       Bloggr
     </LinkTo>
@@ -26,34 +26,30 @@
         </LinkTo>
       </ActiveLink>
     </ul>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item sync {{if cloudState.cloudPull "sync-enabled"}}" title="Pull data">
-        <span class="nav-text">
-          <i aria-hidden class="fa fa-2x fa-cloud-download sync-cloud"></i>Pull {{if cloudState.cloudPull "synced" "not synced"}}
-        </span>
-      </li>
-      <li class="nav-item sync {{if cloudState.cloudPush "sync-enabled"}}" title="Push data">
-        <span class="nav-text">
-          <i aria-hidden class="fa fa-2x fa-cloud-upload sync-cloud"></i>Push {{if cloudState.cloudPush "synced" "not synced"}}
-        </span>
-      </li>
-      {{#if session.isAuthenticated}}
-        <li class="nav-item">
-          <a class="nav-link" href="#" {{action "logout"}}>Logout</a>
+    <div class="navbar-nav ml-auto">
+      <span class="push {{if this.cloudState.cloudPull "push-enabled"}} navbar-text px-3" title="Pull data">
+          {{svg-jar "cloud-download" size=2}} Pull {{if this.cloudState.cloudPull "synced" "not synced"}}
+      </span>          
+      <span class="push {{if this.cloudState.cloudPush "push-enabled"}} navbar-text px-3" title="Push data">
+          {{svg-jar "cloud-upload" size=2}} Push {{if this.cloudState.cloudPush "synced" "not synced"}}
+      </span>          
+      {{#if this.session.isAuthenticated}}
+        <li class="nav-item px-3">
+          <a href="#" {{on "click" this.logout}} class="nav-link">Logout</a>
         </li>
       {{else}}
-        <ActiveLink class="nav-item">
+        <ActiveLink class="nav-item px-3">
           <LinkTo @route="login" class="nav-link">
             Login
           </LinkTo>
         </ActiveLink>
       {{/if}}
-      <li class="nav-item">
-        <span class="nav-text">
-          <RefreshIndicator @spin={{isSpinning}}/>
-        </span>
-      </li>
-    </ul>
+      <span class="navbar-text spinner">
+        <RefreshIndicator @spin={{this.isSpinning}} />
+      </span>          
+    </div>
   </nav>
 </header>
-{{outlet}}
+<main class="container-fluid pt-3">
+  {{outlet}}
+</main>
