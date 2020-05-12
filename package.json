@@ -41,7 +41,7 @@
     "ember-cli-filter-by-query": "^1.3.1",
     "ember-cli-htmlbars": "^5.0.0",
     "ember-cli-inject-live-reload": "^2.0.2",
-    "ember-cli-markdown-editor": "github:martinic/ember-cli-markdown-editor#ec157a7cdcb00cdd0f66aca52c9f39803ccd2f1b",
+    "ember-cli-markdown-editor": "^0.2.0",
     "ember-cli-pagination": "^3.1.5",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-uglify": "^3.0.0",
